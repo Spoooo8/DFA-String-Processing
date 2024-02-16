@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.regex.*;
 
-public class frame1 implements ActionListener{
+public class frame3 implements ActionListener{
 
     JFrame frame; 
     JButton button,next;  
@@ -11,7 +11,7 @@ public class frame1 implements ActionListener{
     JLabel label, heading, input, display, language, language1;
     JTextArea area;
 
-    public frame1(){
+    public frame3(){
         //create a new frame
         frame = new JFrame("String Processing");
        
@@ -33,18 +33,18 @@ public class frame1 implements ActionListener{
         button.addActionListener(this);
 
         //add image
-        icon = new ImageIcon(getClass().getResource("dfa1.png"));
+        icon = new ImageIcon(getClass().getResource("dfa3.png"));
         Image image1 = icon.getImage();
-        Image image2 = image1.getScaledInstance(350, 200,Image.SCALE_SMOOTH );
+        Image image2 = image1.getScaledInstance(400, 200,Image.SCALE_SMOOTH );
         icon = new ImageIcon(image2);
         label = new JLabel(icon);
 
         //add language
-        language = new JLabel("L = { (E|(aa)*) }");
+        language = new JLabel("L = { (a|b)*(ab|ba) }");
         language.setBounds(60,400,800,40);
         language.setFont(new Font("Arial", Font.BOLD, 20));
-        language1 = new JLabel("To accept even number of a's"); 
-        language1.setBounds(58,440,300,40);
+        language1 = new JLabel("To accept string ending with ab or ba"); 
+        language1.setBounds(58,440,800,40);
         language1.setFont(new Font("Arial", Font.BOLD, 20));
 
         //display the output
@@ -66,26 +66,25 @@ public class frame1 implements ActionListener{
         frame.add(language1);
         frame.add(display);
         frame.add(label);
+        
         frame.setSize(900,600);
         frame.setVisible(true);
-
-      
         frame.setLocationRelativeTo(null);
        
-        next.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ev){
-                frame.dispose();
-                frame2 f2 = new frame2();
-                f2.setVisible(true);
+      //  next.addActionListener(new ActionListener() {
+        //    public void actionPerformed(ActionEvent ev){
+        //        frame.dispose();
+         //       frame2 f = new frame2();
+         //       f.setVisible(true);
 
                 
-            }
-         });
+          //  }
+      //   });
     }  
   
     public void actionPerformed(ActionEvent event){
        String text = area.getText();
-       String regex = "^(|a{2})*$";
+       String regex = "^(a|b)*(ab|ba)$";
        Pattern pattern = Pattern.compile(regex);
        Matcher matcher = pattern.matcher(text);
        boolean isMatch = matcher.matches();
@@ -97,8 +96,13 @@ public class frame1 implements ActionListener{
        }
     }
     public static void main(String[] args){
-        new frame1();
+        new frame3();
           
     }
-}
 
+    public void setVisible(boolean b) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setVisible'");
+    }
+
+}

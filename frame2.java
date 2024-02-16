@@ -1,9 +1,10 @@
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.*;
 import java.util.regex.*;
 
-public class frame1 implements ActionListener{
+public class frame2 implements ActionListener{
 
     JFrame frame; 
     JButton button,next;  
@@ -11,7 +12,7 @@ public class frame1 implements ActionListener{
     JLabel label, heading, input, display, language, language1;
     JTextArea area;
 
-    public frame1(){
+    public frame2(){
         //create a new frame
         frame = new JFrame("String Processing");
        
@@ -33,18 +34,18 @@ public class frame1 implements ActionListener{
         button.addActionListener(this);
 
         //add image
-        icon = new ImageIcon(getClass().getResource("dfa1.png"));
+        icon = new ImageIcon(getClass().getResource("dfa2.png"));
         Image image1 = icon.getImage();
-        Image image2 = image1.getScaledInstance(350, 200,Image.SCALE_SMOOTH );
+        Image image2 = image1.getScaledInstance(400, 200,Image.SCALE_SMOOTH );
         icon = new ImageIcon(image2);
         label = new JLabel(icon);
 
         //add language
-        language = new JLabel("L = { (E|(aa)*) }");
+        language = new JLabel("L = { 0(11)*1*2 }");
         language.setBounds(60,400,800,40);
         language.setFont(new Font("Arial", Font.BOLD, 20));
-        language1 = new JLabel("To accept even number of a's"); 
-        language1.setBounds(58,440,300,40);
+        language1 = new JLabel("To accept string beginning with 0 followed by odd number of 1's and ending with 2"); 
+        language1.setBounds(55,440,800,40);
         language1.setFont(new Font("Arial", Font.BOLD, 20));
 
         //display the output
@@ -66,26 +67,21 @@ public class frame1 implements ActionListener{
         frame.add(language1);
         frame.add(display);
         frame.add(label);
+        
         frame.setSize(900,600);
         frame.setVisible(true);
-
-      
         frame.setLocationRelativeTo(null);
-       
         next.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ev){
-                frame.dispose();
-                frame2 f2 = new frame2();
-                f2.setVisible(true);
-
-                
-            }
-         });
+         public void actionPerformed(ActionEvent ev){
+             frame.dispose();
+             frame3 f3 = new frame3();
+             f3.setVisible(true);
+        }
+      });
     }  
-  
     public void actionPerformed(ActionEvent event){
        String text = area.getText();
-       String regex = "^(|a{2})*$";
+       String regex = "^0(1{2})*12$";
        Pattern pattern = Pattern.compile(regex);
        Matcher matcher = pattern.matcher(text);
        boolean isMatch = matcher.matches();
@@ -95,10 +91,16 @@ public class frame1 implements ActionListener{
        else{
         display.setText("The string "+ text +" is rejected");
        }
+        
     }
-    public static void main(String[] args){
-        new frame1();
+   
+   public static void main(String[] args){
+        new frame2();
           
     }
+public void setVisible(boolean b) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'setVisible'");
 }
 
+   }
