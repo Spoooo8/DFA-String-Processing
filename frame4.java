@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.regex.*;
 
-public class frame3 implements ActionListener{
+public class frame4 implements ActionListener{
 
     JFrame frame; 
     JButton button,next;  
@@ -11,7 +11,7 @@ public class frame3 implements ActionListener{
     JLabel label, heading, input, display, language, language1;
     JTextArea area;
 
-    public frame3(){
+    public frame4(){
         //create a new frame
         frame = new JFrame("String Processing");
        
@@ -33,17 +33,17 @@ public class frame3 implements ActionListener{
         button.addActionListener(this);
 
         //add image
-        icon = new ImageIcon(getClass().getResource("dfa3.png"));
+        icon = new ImageIcon(getClass().getResource("dfa4.png"));
         Image image1 = icon.getImage();
         Image image2 = image1.getScaledInstance(400, 200,Image.SCALE_SMOOTH );
         icon = new ImageIcon(image2);
         label = new JLabel(icon);
 
         //add language
-        language = new JLabel("L = { (a|b)*(ab|ba) }");
+        language = new JLabel("L = { (a|b)*(abb) }");
         language.setBounds(60,400,800,40);
         language.setFont(new Font("Arial", Font.BOLD, 20));
-        language1 = new JLabel("To accept string ending with ab or ba"); 
+        language1 = new JLabel("To accept string ending with abb"); 
         language1.setBounds(58,440,800,40);
         language1.setFont(new Font("Arial", Font.BOLD, 20));
 
@@ -70,21 +70,18 @@ public class frame3 implements ActionListener{
         frame.setSize(900,600);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
-       
-        next.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ev){
-                frame.dispose();
-              frame4 f = new frame4();
-               f.setVisible(true);
-
-                
-          }
-       });
+       next.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent ev){
+                 frame.dispose();
+                 frame5 f = new frame5();
+                 f.setVisible(true);   
+           }
+         });    
     }  
   
     public void actionPerformed(ActionEvent event){
        String text = area.getText();
-       String regex = "^(a|b)*(ab|ba)$";
+       String regex = "^(a|b)*(abb)$";
        Pattern pattern = Pattern.compile(regex);
        Matcher matcher = pattern.matcher(text);
        boolean isMatch = matcher.matches();
@@ -96,7 +93,7 @@ public class frame3 implements ActionListener{
        }
     }
     public static void main(String[] args){
-        new frame3();
+        new frame4();
           
     }
 
